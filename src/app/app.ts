@@ -5,8 +5,11 @@ import {FORM_PROVIDERS} from 'angular2/common';
 import '../style/app.scss';
 
 import {Api} from './services/api/api';
+import {TaskService} from './services/task.service';
+
 import {Home} from './components/home/home';
 import {About} from "./components/about/about";
+import {TaskComponent} from './components/task/task.component';
 
 /*
  * App Component
@@ -14,14 +17,15 @@ import {About} from "./components/about/about";
  */
 @Component({
   selector: 'app', // <app></app>
-  providers: [...FORM_PROVIDERS, Api],
+  providers: [...FORM_PROVIDERS, Api, TaskService],
   directives: [...ROUTER_DIRECTIVES],
   pipes: [],
   styles: [require('./app.scss')],
   template: require('./app.html')
 })
 @RouteConfig([
-  {path: '/', component: Home, name: 'Home'},
+  {path: '/Task', component: TaskComponent, name: 'Task', useAsDefault: true},
+  {path: '/Home', component: Home, name: 'Home'},
   {path: '/About', component: About, name: 'About'}
 ])
 export class App {

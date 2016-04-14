@@ -58,8 +58,10 @@ module.exports = function makeWebpackConfig() {
   config.output = isTest ? {} : {
     path: root('dist'),
     publicPath: isProd ? '/' : 'http://localhost:8080/',
-    filename: isProd ? 'js/[name].[hash].js' : 'js/[name].js',
-    chunkFilename: isProd ? '[id].[hash].chunk.js' : '[id].chunk.js'
+    // filename: isProd ? 'js/[name].[hash].js' : 'js/[name].js',
+    filename: 'js/[name].js',
+    // chunkFilename: isProd ? '[id].[hash].chunk.js' : '[id].chunk.js'
+    chunkFilename: '[id].chunk.js'
   };
 
   /**
@@ -184,7 +186,8 @@ module.exports = function makeWebpackConfig() {
       // Extract css files
       // Reference: https://github.com/webpack/extract-text-webpack-plugin
       // Disabled when in test mode or not in build mode
-      new ExtractTextPlugin('css/[name].[hash].css', {disable: !isProd})
+      // new ExtractTextPlugin('css/[name].[hash].css', {disable: !isProd})
+      new ExtractTextPlugin('css/[name].css', {disable: !isProd})
     );
   }
 
